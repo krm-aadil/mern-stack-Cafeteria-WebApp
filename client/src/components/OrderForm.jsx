@@ -21,7 +21,7 @@ function OrderForm() {
      
       <header className="text-center my-8">
       
-        <img src="/sample-images/waiter-with-food-tray.jpg" alt="Cafeteria" className="mx-auto w-full h-full object-cover" />
+        <img src="/sample-images/waiter-with-food-tray.jpg" alt="Cafeteria" className="mx-auto w-full h-48 object-cover" />
         <h1 className="text-4xl font-bold mt-4">Company Name</h1>
       </header>
 
@@ -46,6 +46,56 @@ function OrderForm() {
         <h2 className="text-2xl font-bold mb-4">Today's Top Picks</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {/* Example Food Card */}
+          <div className="border p-4 rounded-md shadow-md">
+            <img
+              src="sample-images/hoppers.jpg"
+              alt="Food Name"
+              className="w-full h-32 object-cover rounded-md mb-4"
+            />
+            <h3 className="text-lg font-semibold">Food Name</h3>
+            <p className="text-sm text-gray-600">$Price</p>
+            <div className="mt-2">
+              <label className="mr-2">Quantity:</label>
+              <select className="border p-2 rounded-md">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+              </select>
+            </div>
+            <div className="mt-2">
+              <label className="mr-2">Size:</label>
+              <select className="border p-2 rounded-md">
+                <option>Small</option>
+                <option>Medium</option>
+                <option>Large</option>
+              </select>
+            </div>
+          </div>
+          <div className="border p-4 rounded-md shadow-md">
+            <img
+              src="sample-images/hoppers.jpg"
+              alt="Food Name"
+              className="w-full h-32 object-cover rounded-md mb-4"
+            />
+            <h3 className="text-lg font-semibold">Food Name</h3>
+            <p className="text-sm text-gray-600">$Price</p>
+            <div className="mt-2">
+              <label className="mr-2">Quantity:</label>
+              <select className="border p-2 rounded-md">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+              </select>
+            </div>
+            <div className="mt-2">
+              <label className="mr-2">Size:</label>
+              <select className="border p-2 rounded-md">
+                <option>Small</option>
+                <option>Medium</option>
+                <option>Large</option>
+              </select>
+            </div>
+          </div>
           <div className="border p-4 rounded-md shadow-md">
             <img
               src="sample-images/hoppers.jpg"
@@ -154,6 +204,56 @@ function OrderForm() {
               </select>
             </div>
           </div>
+          <div className="border p-4 rounded-md shadow-md">
+          <img
+              src="sample-images/kottu.jpg"
+              alt="Food Name"
+              className="w-full h-32 object-cover rounded-md mb-4"
+            />
+            <h3 className="text-lg font-semibold">Food Name</h3>
+            <p className="text-sm text-gray-600">$Price</p>
+            <div className="mt-2">
+              <label className="mr-2">Quantity:</label>
+              <select className="border p-2 rounded-md">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+              </select>
+            </div>
+            <div className="mt-2">
+              <label className="mr-2">Size:</label>
+              <select className="border p-2 rounded-md">
+                <option>Small</option>
+                <option>Medium</option>
+                <option>Large</option>
+              </select>
+            </div>
+          </div>
+          <div className="border p-4 rounded-md shadow-md">
+          <img
+              src="sample-images/kottu.jpg"
+              alt="Food Name"
+              className="w-full h-32 object-cover rounded-md mb-4"
+            />
+            <h3 className="text-lg font-semibold">Food Name</h3>
+            <p className="text-sm text-gray-600">$Price</p>
+            <div className="mt-2">
+              <label className="mr-2">Quantity:</label>
+              <select className="border p-2 rounded-md">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+              </select>
+            </div>
+            <div className="mt-2">
+              <label className="mr-2">Size:</label>
+              <select className="border p-2 rounded-md">
+                <option>Small</option>
+                <option>Medium</option>
+                <option>Large</option>
+              </select>
+            </div>
+          </div>
           {/* Repeat food cards for recently added foods */}
         </div>
       </section>
@@ -163,6 +263,86 @@ function OrderForm() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {/* Example Food Card */}
           <div className="border p-4 rounded-md shadow-md">
+          <img
+              src="sample-images/rice.jpg"
+              alt="Food Name"
+              className="w-full h-32 object-cover rounded-md mb-4"
+            />
+            <h3 className="text-lg font-semibold">Food Name</h3>
+            <p className="text-sm text-gray-600">$Price</p>
+            <div className="mt-2">
+              <label className="mr-2">Quantity:</label>
+              <select className="border p-2 rounded-md">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+              </select>
+            </div>
+            <div className="mt-2">
+              <label className="mr-2">Size:</label>
+              <select className="border p-2 rounded-md">
+                <option>Small</option>
+                <option>Medium</option>
+                <option>Large</option>
+              </select>
+            </div>
+          </div>
+          <div className="border p-4 rounded-md shadow-md">
+          <img
+              src="sample-images/rice.jpg"
+              alt="Food Name"
+              className="w-full h-32 object-cover rounded-md mb-4"
+            />
+            <h3 className="text-lg font-semibold">Food Name</h3>
+            <p className="text-sm text-gray-600">$Price</p>
+            <div className="mt-2">
+              <label className="mr-2">Quantity:</label>
+              <select className="border p-2 rounded-md">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+              </select>
+            </div>
+            <div className="mt-2">
+              <label className="mr-2">Size:</label>
+              <select className="border p-2 rounded-md">
+                <option>Small</option>
+                <option>Medium</option>
+                <option>Large</option>
+              </select>
+            </div>
+          </div>
+          <div className="border p-4 rounded-md shadow-md">
+          <img
+              src="sample-images/rice.jpg"
+              alt="Food Name"
+              className="w-full h-32 object-cover rounded-md mb-4"
+            />
+            <h3 className="text-lg font-semibold">Food Name</h3>
+            <p className="text-sm text-gray-600">$Price</p>
+            <div className="mt-2">
+              <label className="mr-2">Quantity:</label>
+              <select className="border p-2 rounded-md">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+              </select>
+            </div>
+            <div className="mt-2">
+              <label className="mr-2">Size:</label>
+              <select className="border p-2 rounded-md">
+                <option>Small</option>
+                <option>Medium</option>
+                <option>Large</option>
+              </select>
+            </div>
+          </div>
+          <div className="border p-4 rounded-md shadow-md">
+          <img
+              src="sample-images/rice.jpg"
+              alt="Food Name"
+              className="w-full h-32 object-cover rounded-md mb-4"
+            />
             <h3 className="text-lg font-semibold">Food Name</h3>
             <p className="text-sm text-gray-600">$Price</p>
             <div className="mt-2">
@@ -191,6 +371,86 @@ function OrderForm() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {/* Example Food Card */}
           <div className="border p-4 rounded-md shadow-md">
+          <img
+              src="sample-images/milkshake.jpg"
+              alt="Food Name"
+              className="w-full h-32 object-cover rounded-md mb-4"
+            />
+            <h3 className="text-lg font-semibold">Beverage Name</h3>
+            <p className="text-sm text-gray-600">$Price</p>
+            <div className="mt-2">
+              <label className="mr-2">Quantity:</label>
+              <select className="border p-2 rounded-md">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+              </select>
+            </div>
+            <div className="mt-2">
+              <label className="mr-2">Size:</label>
+              <select className="border p-2 rounded-md">
+                <option>Small</option>
+                <option>Medium</option>
+                <option>Large</option>
+              </select>
+            </div>
+          </div>
+          <div className="border p-4 rounded-md shadow-md">
+          <img
+              src="sample-images/milkshake.jpg"
+              alt="Food Name"
+              className="w-full h-32 object-cover rounded-md mb-4"
+            />
+            <h3 className="text-lg font-semibold">Beverage Name</h3>
+            <p className="text-sm text-gray-600">$Price</p>
+            <div className="mt-2">
+              <label className="mr-2">Quantity:</label>
+              <select className="border p-2 rounded-md">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+              </select>
+            </div>
+            <div className="mt-2">
+              <label className="mr-2">Size:</label>
+              <select className="border p-2 rounded-md">
+                <option>Small</option>
+                <option>Medium</option>
+                <option>Large</option>
+              </select>
+            </div>
+          </div>
+          <div className="border p-4 rounded-md shadow-md">
+          <img
+              src="sample-images/milkshake.jpg"
+              alt="Food Name"
+              className="w-full h-32 object-cover rounded-md mb-4"
+            />
+            <h3 className="text-lg font-semibold">Beverage Name</h3>
+            <p className="text-sm text-gray-600">$Price</p>
+            <div className="mt-2">
+              <label className="mr-2">Quantity:</label>
+              <select className="border p-2 rounded-md">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+              </select>
+            </div>
+            <div className="mt-2">
+              <label className="mr-2">Size:</label>
+              <select className="border p-2 rounded-md">
+                <option>Small</option>
+                <option>Medium</option>
+                <option>Large</option>
+              </select>
+            </div>
+          </div>
+          <div className="border p-4 rounded-md shadow-md">
+          <img
+              src="sample-images/milkshake.jpg"
+              alt="Food Name"
+              className="w-full h-32 object-cover rounded-md mb-4"
+            />
             <h3 className="text-lg font-semibold">Beverage Name</h3>
             <p className="text-sm text-gray-600">$Price</p>
             <div className="mt-2">
