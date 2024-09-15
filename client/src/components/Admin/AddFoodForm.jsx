@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Sidebar from './Sidebar';
 
 function AddFoodForm() {
   const [foodData, setFoodData] = useState({
@@ -67,7 +68,8 @@ function AddFoodForm() {
   };
 
   return (
-    <div className="flex">
+    <div className="min-h-screen flex">
+      <Sidebar /> {/* Sidebar Component */}
       <div className="w-64">
         {/* Sidebar can be added here */}
       </div>

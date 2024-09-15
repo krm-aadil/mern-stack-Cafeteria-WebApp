@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const DiningForm = () => {
   const location = useLocation();
+  const navigate = useNavigate(); // Initialize navigate hook
   const { selectedFoods } = location.state || { selectedFoods: [] };
   const [diningDate, setDiningDate] = useState('');
   const [diningTime, setDiningTime] = useState('');
@@ -30,6 +31,7 @@ const DiningForm = () => {
 
       if (response.ok) {
         alert('Order placed successfully!');
+        navigate('/order'); // Redirect to the order page after successful order
       } else {
         const errorData = await response.json();
         alert(`Failed to place order: ${errorData.message}`);

@@ -6,6 +6,7 @@ import OrderForm from './components/OrderForm';
 import DiningForm from './components/DiningForm';
 import AdminDashboard from './components/Admin/Dashboard';
 import AddFoodForm from './components/Admin/AddFoodForm'; // Import AddFoodForm
+import AdminOrders from './components/Admin/AdminOrders';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/dining-details" element={<DiningForm />} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/admin/add-food" element={<AddFoodForm />} /> {/* New Route for AddFoodForm */}
+          <Route path="/admin/orders" element={<AdminOrders />} />
         </Routes>
       </BrowserRouter>
     </>

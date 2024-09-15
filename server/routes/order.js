@@ -1,31 +1,34 @@
 const express = require('express');
-const Order = require('../models/Order'); // Order model
-const auth = require('../middleware/auth'); // Authentication middleware
 const router = express.Router();
+const Order = require('../models/Order');
+const adminAuth = require('../middleware/adminAuth'); // Middleware to check if the user is admin
 
-// Place an order
-router.post('/place', auth, async (req, res) => {
-  const { diningDate, diningTime, additionalNotes, selectedFoods } = req.body;
-
-  if (!diningDate || !diningTime || !selectedFoods || selectedFoods.some(food => !food.size)) {
-    return res.status(400).json({ message: 'Please fill out all required fields, including size.' });
+// Get all orders (for admin)
+router.get('/admin/orders', adminAuth, async (req, res) => {
+  try {
+    const orders = await Order.find().populate('user', 'name email');
+    res.json(orders);
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to fetch orders' });
   }
+});
+
+// Update order status (for admin)
+router.put('/admin/orders/:id/status', adminAuth, async (req, res) => {
+  const { status } = req.body;
 
   try {
-    const newOrder = new Order({
-      user: req.user.userId, // Use the authenticated user's ID
-      diningDate,
-      diningTime,
-      additionalNotes,
-      selectedFoods,
-      status: 'Pending',
-    });
+    const order = await Order.findById(req.params.id);
+    if (!order) {
+      return res.status(404).json({ message: 'Order not found' });
+    }
 
-    const savedOrder = await newOrder.save();
-    res.status(201).json(savedOrder);
+    order.status = status;
+    await order.save();
+
+    res.json({ message: 'Order status updated successfully', order });
   } catch (error) {
-    console.error('Error placing order:', error);
-    res.status(500).json({ message: 'Failed to place order' });
+    res.status(500).json({ message: 'Failed to update order status' });
   }
 });
 
