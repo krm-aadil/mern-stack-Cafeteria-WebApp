@@ -5,9 +5,9 @@ const bcrypt = require('bcryptjs');
 
 const router = express.Router();
 
-// Register User
+// Register User (Add role field here if needed for admin users)
 router.post('/register', async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, role } = req.body;
 
   try {
     let user = await User.findOne({ email });
@@ -15,11 +15,17 @@ router.post('/register', async (req, res) => {
       return res.status(400).json({ message: 'User already exists' });
     }
 
-    user = new User({ name, email, password });
+    user = new User({
+      name,
+      email,
+      password,
+      role: role || 'user', // Set default role as 'user'
+    });
+
     await user.save();
 
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-    res.status(201).json({ token, user: { name: user.name, email: user.email } });
+    res.status(201).json({ token, user: { name: user.name, email: user.email, role: user.role } });
   } catch (err) {
     res.status(500).json({ message: 'Server error' });
   }
@@ -35,13 +41,23 @@ router.post('/login', async (req, res) => {
       return res.status(400).json({ message: 'Invalid credentials' });
     }
 
-    const isMatch = await user.matchPassword(password);
+    const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({ message: 'Invalid credentials' });
     }
 
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-    res.json({ token, user: { name: user.name, email: user.email } });
+
+    // Send the user role as part of the response
+    res.json({
+      token,
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role, // Include the role in the response
+      },
+    });
   } catch (err) {
     res.status(500).json({ message: 'Server error' });
   }
