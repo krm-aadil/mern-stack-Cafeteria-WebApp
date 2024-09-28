@@ -3,7 +3,6 @@ import Sidebar from './Sidebar';
 
 const AdminOrders = () => {
   const [orders, setOrders] = useState([]);
-  const [statusUpdate, setStatusUpdate] = useState({});
 
   // Fetch all orders when the component is mounted
   useEffect(() => {
@@ -14,10 +13,16 @@ const AdminOrders = () => {
             Authorization: `Bearer ${localStorage.getItem('token')}`, // Send the admin token here
           },
         });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
         const data = await response.json();
         setOrders(data);
       } catch (error) {
         console.error('Error fetching orders:', error);
+        alert('Failed to fetch orders.');
       }
     };
 
@@ -63,7 +68,7 @@ const AdminOrders = () => {
             <table className="table-auto w-full bg-white shadow-lg rounded-md">
               <thead className="bg-gray-100">
                 <tr>
-                  <th className="px-6 py-4 text-left">Order ID</th>
+                  <th className="px-6 py-4 text-left">Order Number</th>
                   <th className="px-6 py-4 text-left">Customer</th>
                   <th className="px-6 py-4 text-left">Items</th>
                   <th className="px-6 py-4 text-left">Date</th>
@@ -74,7 +79,8 @@ const AdminOrders = () => {
               <tbody>
                 {orders.map((order) => (
                   <tr key={order._id} className="border-t">
-                    <td className="px-6 py-4">{order._id}</td>
+                    {/* Display the generated order number */}
+                    <td className="px-6 py-4">#{order.orderNumber}</td>
                     <td className="px-6 py-4">{order.user.name}</td>
                     <td className="px-6 py-4">
                       {order.selectedFoods.map((food, index) => (

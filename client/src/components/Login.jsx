@@ -23,18 +23,25 @@ function LoginForm() {
 
       const data = await response.json();
 
+      // Log the response data to see what's coming back
+      console.log('Login response:', data);
+
       if (response.ok) {
+        // Save the token to localStorage
         localStorage.setItem('token', data.token);
 
+        // Log token and user role to verify correct saving
+        console.log('Token saved:', localStorage.getItem('token')); // Check if token is saved
+        console.log('User role:', data.user?.role); // Log user role
+
         // Check user role and redirect accordingly
-        console.log('User role:', data.user.role); // Debugging: check the role in the response
-        if (data.user.role === 'admin') {
-          navigate('/admin'); // Redirect to admin dashboard
+        if (data.user?.role === 'admin') {
+          navigate('/admin');
         } else {
-          navigate('/order'); // Redirect to regular user order page
+          navigate('/order');
         }
       } else {
-        setErrorMessage(data.message);
+        setErrorMessage(data.message || 'Login failed');
       }
     } catch (error) {
       setErrorMessage('Login failed. Please try again.');

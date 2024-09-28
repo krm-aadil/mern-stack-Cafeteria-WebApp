@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const DiningForm = () => {
   const location = useLocation();
-  const navigate = useNavigate(); // Initialize navigate hook
+  const navigate = useNavigate();
   const { selectedFoods } = location.state || { selectedFoods: [] };
   const [diningDate, setDiningDate] = useState('');
   const [diningTime, setDiningTime] = useState('');
@@ -11,27 +11,35 @@ const DiningForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
+    const token = localStorage.getItem('token');
+    console.log('Token:', token); // Log the token to ensure it is being retrieved
+  
+    if (!token) {
+      alert('Please log in to place an order.');
+      return;
+    }
+  
     const orderData = {
       diningDate,
       diningTime,
       additionalNotes,
       selectedFoods,
     };
-
+  
     try {
       const response = await fetch('http://localhost:5000/api/orders/place', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('token')}`, // Send the token here
+          Authorization: `Bearer ${token}`, // Make sure the token is included here
         },
         body: JSON.stringify(orderData),
       });
-
+  
       if (response.ok) {
         alert('Order placed successfully!');
-        navigate('/order'); // Redirect to the order page after successful order
+        navigate('/order');
       } else {
         const errorData = await response.json();
         alert(`Failed to place order: ${errorData.message}`);
@@ -41,6 +49,7 @@ const DiningForm = () => {
       alert('Error placing order');
     }
   };
+  
 
   return (
     <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg p-6 mt-10">
