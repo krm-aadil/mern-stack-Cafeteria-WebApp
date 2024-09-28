@@ -80,4 +80,33 @@ router.put('/admin/orders/:orderId/status', adminAuth, async (req, res) => {
   }
 });
 
+
+// Route to get daily sales report
+router.get('/sales/daily', adminAuth, async (req, res) => {
+  try {
+    const salesData = await Order.aggregate([
+      { $unwind: "$selectedFoods" }, // Unwind the selectedFoods array to calculate per item
+      {
+        $group: {
+          _id: {
+            day: { $dayOfMonth: "$createdAt" },
+            month: { $month: "$createdAt" },
+            year: { $year: "$createdAt" }
+          },
+          totalSales: { $sum: { $multiply: ["$selectedFoods.quantity", "$selectedFoods.price"] } },
+          orderCount: { $sum: 1 },
+        }
+      },
+      {
+        $sort: { "_id.year": -1, "_id.month": -1, "_id.day": -1 }
+      }
+    ]);
+
+    res.status(200).json(salesData);
+  } catch (error) {
+    console.error('Error generating daily sales report:', error);
+    res.status(500).json({ message: 'Error generating daily sales report' });
+  }
+});
+
 module.exports = router;
