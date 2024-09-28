@@ -18,6 +18,9 @@ function Sidebar() {
         <Link to="/" className="px-4 py-2 hover:bg-gray-700">
           Logout
         </Link>
+        <Link to={"/admin/food"} className="px-4 py-2 hover:bg-gray-700">
+          Manage Food Items
+        </Link>
       </nav>
     </div>
   );

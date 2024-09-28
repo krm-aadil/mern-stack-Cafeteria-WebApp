@@ -41,5 +41,47 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Update food item by ID
+router.put('/update/:id', upload.single('image'), async (req, res) => {
+  try {
+    const { name, price, category, sizes } = req.body;
+    const updateData = {
+      name,
+      price,
+      category,
+      sizes: sizes.split(','),
+    };
+
+    if (req.file) {
+      updateData.image = `/uploads/${req.file.filename}`; // Update image if provided
+    }
+
+    const updatedFood = await Food.findByIdAndUpdate(req.params.id, updateData, { new: true });
+
+    if (!updatedFood) {
+      return res.status(404).json({ message: 'Food item not found' });
+    }
+
+    res.status(200).json(updatedFood);
+  } catch (error) {
+    res.status(500).json({ message: 'Error updating food item', error: error.message });
+  }
+});
+
+
+// Delete food item by ID
+router.delete('/delete/:id', async (req, res) => {
+  try {
+    const deletedFood = await Food.findByIdAndDelete(req.params.id);
+
+    if (!deletedFood) {
+      return res.status(404).json({ message: 'Food item not found' });
+    }
+
+    res.status(200).json({ message: 'Food item deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ message: 'Error deleting food item', error: error.message });
+  }
+});
 
 module.exports = router;
