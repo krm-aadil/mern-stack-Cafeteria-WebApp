@@ -57,16 +57,16 @@ const AdminOrders = () => {
   };
 
   return (
-    <div className="min-h-screen flex">
+    <div className="min-h-screen flex bg-red-50">
       <Sidebar /> {/* Sidebar Component */}
       
       <div className="flex-1 p-8">
-        <h1 className="text-3xl font-bold mb-6 text-center">Admin - Manage Orders</h1>
+        <h1 className="text-3xl font-bold mb-6 text-center text-red-600">Admin - Manage Orders</h1>
 
         {orders.length > 0 ? (
           <div className="overflow-x-auto">
             <table className="table-auto w-full bg-white shadow-lg rounded-md">
-              <thead className="bg-gray-100">
+              <thead className="bg-red-600 text-white">
                 <tr>
                   <th className="px-6 py-4 text-left">Order Number</th>
                   <th className="px-6 py-4 text-left">Customer</th>
@@ -104,7 +104,7 @@ const AdminOrders = () => {
                     </td>
                     <td className="px-6 py-4">
                       <button
-                        className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+                        className="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800 transition"
                         onClick={() => handleStatusChange(order._id, order.status)}
                       >
                         Update Status
@@ -116,7 +116,7 @@ const AdminOrders = () => {
             </table>
           </div>
         ) : (
-          <p className="text-center mt-6">No orders found.</p>
+          <p className="text-center mt-6 text-red-600">No orders found.</p>
         )}
       </div>
     </div>

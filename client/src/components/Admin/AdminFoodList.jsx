@@ -86,10 +86,11 @@ const AdminFoodList = () => {
   );
 
   return (
-    <div className="min-h-screen flex">
+    <div className="min-h-screen flex bg-red-50">
       <Sidebar /> {/* Sidebar Component */}
+      
       <div className="flex-1 p-8">
-        <h2 className="text-2xl font-bold mb-6">Manage Food Items</h2>
+        <h2 className="text-3xl font-bold text-red-600 mb-6">Manage Food Items</h2>
 
         {/* Search bar */}
         <div className="mb-6">
@@ -98,50 +99,50 @@ const AdminFoodList = () => {
             placeholder="Search by food name or category..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="block w-full p-2 border border-gray-300 rounded-md"
+            className="block w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600"
           />
         </div>
 
         {/* Table to display food items */}
-        <table className="min-w-full table-auto bg-white shadow-md rounded-lg overflow-hidden">
+        <table className="min-w-full table-auto bg-white shadow-lg rounded-lg overflow-hidden">
           <thead>
-            <tr className="bg-gray-200 text-left">
-              <th className="px-4 py-2">Image</th>
-              <th className="px-4 py-2">Name</th>
-              <th className="px-4 py-2">Price</th>
-              <th className="px-4 py-2">Category</th>
-              <th className="px-4 py-2">Sizes</th>
-              <th className="px-4 py-2 text-right">Actions</th>
+            <tr className="bg-red-600 text-white">
+              <th className="px-4 py-4 text-left">Image</th>
+              <th className="px-4 py-4 text-left">Name</th>
+              <th className="px-4 py-4 text-left">Price</th>
+              <th className="px-4 py-4 text-left">Category</th>
+              <th className="px-4 py-4 text-left">Sizes</th>
+              <th className="px-4 py-4 text-right">Actions</th>
             </tr>
           </thead>
           <tbody>
             {filteredFoods.map((food) => (
-              <tr key={food._id} className="border-b">
-                <td className="px-4 py-2">
+              <tr key={food._id} className="border-b hover:bg-red-100 transition">
+                <td className="px-4 py-4">
                   <img
                     src={`http://localhost:5000${food.image}`} // Prepend localhost for image
                     alt={food.name}
-                    className="w-16 h-16 object-cover"
+                    className="w-16 h-16 object-cover rounded-md"
                   />
                 </td>
-                <td className="px-4 py-2">{food.name}</td>
-                <td className="px-4 py-2">${food.price}</td>
-                <td className="px-4 py-2">{food.category}</td>
-                <td className="px-4 py-2">{food.sizes.join(', ')}</td>
-                <td className="px-4 py-2 text-right">
+                <td className="px-4 py-4">{food.name}</td>
+                <td className="px-4 py-4">${food.price}</td>
+                <td className="px-4 py-4">{food.category}</td>
+                <td className="px-4 py-4">{food.sizes.join(', ')}</td>
+                <td className="px-4 py-4 text-right">
                   <button
                     onClick={() => {
                       setEditingFood(food._id);
                       setEditData({ name: food.name, price: food.price, category: food.category, sizes: food.sizes.join(',') });
                     }}
-                    className="inline-flex items-center bg-blue-500 text-white px-4 py-2 rounded-md mr-2"
+                    className="inline-flex items-center bg-black text-white px-4 py-2 rounded-md mr-2 hover:bg-gray-800 transition"
                   >
                     <FiEdit className="w-5 h-5 mr-1" />
                     Edit
                   </button>
                   <button
                     onClick={() => handleDelete(food._id)}
-                    className="inline-flex items-center bg-red-500 text-white px-4 py-2 rounded-md"
+                    className="inline-flex items-center bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-700 transition"
                   >
                     <FiTrash2 className="w-5 h-5 mr-1" />
                     Delete
@@ -154,15 +155,15 @@ const AdminFoodList = () => {
 
         {/* Edit form (shown when editing a food item) */}
         {editingFood && (
-          <div className="mt-8 p-6 bg-gray-100 rounded-lg shadow-md">
-            <h3 className="text-xl font-bold mb-4">Edit Food Item</h3>
+          <div className="mt-8 p-6 bg-white rounded-lg shadow-lg">
+            <h3 className="text-xl font-bold mb-4 text-red-600">Edit Food Item</h3>
             <div>
               <input
                 type="text"
                 name="name"
                 value={editData.name}
                 onChange={handleEditChange}
-                className="block w-full p-2 border rounded-md mb-2"
+                className="block w-full p-3 border border-gray-300 rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-red-600"
                 placeholder="Food Name"
               />
               <input
@@ -170,7 +171,7 @@ const AdminFoodList = () => {
                 name="price"
                 value={editData.price}
                 onChange={handleEditChange}
-                className="block w-full p-2 border rounded-md mb-2"
+                className="block w-full p-3 border border-gray-300 rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-red-600"
                 placeholder="Price"
               />
               <input
@@ -178,7 +179,7 @@ const AdminFoodList = () => {
                 name="category"
                 value={editData.category}
                 onChange={handleEditChange}
-                className="block w-full p-2 border rounded-md mb-2"
+                className="block w-full p-3 border border-gray-300 rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-red-600"
                 placeholder="Category"
               />
               <input
@@ -186,25 +187,25 @@ const AdminFoodList = () => {
                 name="sizes"
                 value={editData.sizes}
                 onChange={handleEditChange}
-                className="block w-full p-2 border rounded-md mb-2"
+                className="block w-full p-3 border border-gray-300 rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-red-600"
                 placeholder="Sizes (comma separated)"
               />
               <input
                 type="file"
                 accept="image/*"
                 onChange={handleEditFileChange}
-                className="block w-full p-2 border rounded-md mb-2"
+                className="block w-full p-3 border border-gray-300 rounded-lg mb-3"
               />
               <div className="flex justify-end">
                 <button
                   onClick={() => handleUpdate(editingFood)}
-                  className="bg-green-500 text-white px-4 py-2 rounded-md"
+                  className="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800 transition"
                 >
                   Update
                 </button>
                 <button
                   onClick={() => setEditingFood(null)}
-                  className="bg-gray-500 text-white px-4 py-2 rounded-md ml-2"
+                  className="bg-gray-500 text-white px-4 py-2 rounded-md ml-2 hover:bg-gray-700 transition"
                 >
                   Cancel
                 </button>

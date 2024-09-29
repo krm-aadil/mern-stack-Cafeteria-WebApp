@@ -1,0 +1,10 @@
+{
+  "_id": {
+    "$oid": "66e69820b4839bbe3941edb0"
+  },
+  "name": "Kaleel Rahuman Mohamed Aadil",
+  "email": "2001mohamed.aadil@gmail.com",
+  "password": "$2a$10$KS36IHVzOuFiXTCzh9R6o.imj7SPazd3fh8Q9pPmXaVztvLeZwhlK",
+  "role": "admin",
+  "__v": 0
+}

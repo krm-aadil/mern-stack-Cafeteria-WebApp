@@ -9,7 +9,7 @@ function AddFoodForm() {
     category: '',
     sizes: [],
   });
-  const [imageFile, setImageFile] = useState(null); // State to store the image file
+  const [imageFile, setImageFile] = useState(null);
   const [sizesInput, setSizesInput] = useState('');
   const navigate = useNavigate();
 
@@ -35,29 +35,28 @@ function AddFoodForm() {
   };
 
   const handleFileChange = (e) => {
-    setImageFile(e.target.files[0]); // Store the selected image file
+    setImageFile(e.target.files[0]);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Create form data for file upload
     const formData = new FormData();
     formData.append('name', foodData.name);
     formData.append('price', foodData.price);
     formData.append('category', foodData.category);
-    formData.append('sizes', foodData.sizes.join(',')); // Convert sizes array to a comma-separated string
-    formData.append('image', imageFile); // Append the image file
+    formData.append('sizes', foodData.sizes.join(','));
+    formData.append('image', imageFile);
 
     try {
       const response = await fetch('http://localhost:5000/api/food/add', {
         method: 'POST',
-        body: formData, // Send form data
+        body: formData,
       });
 
       if (response.ok) {
         alert('Food item added successfully!');
-        navigate('/admin'); // Redirect to Admin Dashboard
+        navigate('/admin');
       } else {
         alert('Failed to add food item');
       }
@@ -68,14 +67,11 @@ function AddFoodForm() {
   };
 
   return (
-    <div className="min-h-screen flex">
+    <div className="min-h-screen flex bg-red-50">
       <Sidebar /> {/* Sidebar Component */}
-      <div className="w-64">
-        {/* Sidebar can be added here */}
-      </div>
       <div className="flex-1 p-8">
-        <h2 className="text-2xl font-bold mb-6">Add New Food Item</h2>
-        <form onSubmit={handleSubmit} className="space-y-4" encType="multipart/form-data">
+        <h2 className="text-3xl font-bold text-red-600 mb-8 text-center">Add New Food Item</h2>
+        <form onSubmit={handleSubmit} className="space-y-6 max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md">
           <div>
             <label className="block text-sm font-medium text-gray-700">Food Name</label>
             <input
@@ -83,7 +79,7 @@ function AddFoodForm() {
               name="name"
               value={foodData.name}
               onChange={handleChange}
-              className="block w-full mt-1 p-2 border border-gray-300 rounded-md"
+              className="block w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-600"
               required
             />
           </div>
@@ -94,7 +90,7 @@ function AddFoodForm() {
               name="price"
               value={foodData.price}
               onChange={handleChange}
-              className="block w-full mt-1 p-2 border border-gray-300 rounded-md"
+              className="block w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-600"
               required
             />
           </div>
@@ -104,7 +100,7 @@ function AddFoodForm() {
               name="category"
               value={foodData.category}
               onChange={handleChange}
-              className="block w-full mt-1 p-2 border border-gray-300 rounded-md"
+              className="block w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-600"
               required
             >
               <option value="">Select Category</option>
@@ -121,12 +117,12 @@ function AddFoodForm() {
                 value={sizesInput}
                 onChange={handleSizesChange}
                 placeholder="e.g., Small"
-                className="block w-full p-2 border border-gray-300 rounded-md"
+                className="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-600"
               />
               <button
                 type="button"
                 onClick={handleAddSize}
-                className="bg-blue-500 text-white px-4 py-2 rounded-md"
+                className="bg-black text-white px-4 py-2 rounded-md"
               >
                 Add
               </button>
@@ -147,13 +143,13 @@ function AddFoodForm() {
               type="file"
               accept="image/*"
               onChange={handleFileChange}
-              className="block w-full mt-1 p-2 border border-gray-300 rounded-md"
+              className="block w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-600"
               required
             />
           </div>
           <button
             type="submit"
-            className="block w-full bg-green-500 text-white font-semibold py-2 rounded-md"
+            className="block w-full bg-black text-white font-semibold py-2 rounded-md hover:bg-gray-800 transition duration-300"
           >
             Add Food Item
           </button>
