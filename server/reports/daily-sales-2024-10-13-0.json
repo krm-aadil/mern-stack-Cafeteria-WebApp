@@ -1,0 +1,29 @@
+[
+  {
+    "_id": {
+      "day": 13,
+      "month": 10,
+      "year": 2024
+    },
+    "totalSales": 0,
+    "orderCount": 2
+  },
+  {
+    "_id": {
+      "day": 8,
+      "month": 10,
+      "year": 2024
+    },
+    "totalSales": 0,
+    "orderCount": 1
+  },
+  {
+    "_id": {
+      "day": 28,
+      "month": 9,
+      "year": 2024
+    },
+    "totalSales": 0,
+    "orderCount": 26
+  }
+]
