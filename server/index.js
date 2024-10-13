@@ -9,6 +9,7 @@ const Order = require('./models/Order'); // Import Order model
 const authRoutes = require('./routes/auth'); // Import auth routes
 const foodRoutes = require('./routes/food'); // Import food routes for handling food items
 const orderRoutes = require('./routes/order'); // Add this line
+const ChatRoutes = require('./routes/chat'); // Import chat routes
 
 const dashboardRoutes = require('./routes/dashboard'); //dashboard
 
@@ -32,11 +33,13 @@ app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/auth', authRoutes); // Auth routes
 app.use('/api/food', foodRoutes); // Food routes (for adding food items)
 app.use('/api/orders', orderRoutes); // Order routes
+app.use('/api/chat', ChatRoutes); // Chat routes
+
 
 // Serve static files from the 'uploads' directory for uploaded images
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// Example: Scheduled report generation every minute for testing
+// cheduled report generation every minute for testing
 // cron.schedule('* * * * *', async () => {
   // Example: Scheduled daily report generation at midnight
 cron.schedule('0 0 * * *', async () => {

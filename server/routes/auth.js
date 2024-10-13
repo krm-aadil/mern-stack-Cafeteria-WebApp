@@ -2,6 +2,9 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const User = require('../models/User');
 const router = require('express').Router();
+const authMiddleware = require('../middleware/auth');
+const Order = require('../models/Order');
+
 
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
@@ -26,6 +29,19 @@ router.post('/login', async (req, res) => {
   } catch (error) {
     console.error('Server error:', error);
     res.status(500).json({ message: 'Server error' });
+  }
+});
+
+router.get('/profile', authMiddleware, async (req, res) => {
+  try {
+    const userId = req.user.userId;
+    const user = await User.findById(userId).select('-password'); // Exclude password field
+    const orders = await Order.find({ user: userId }); // Find orders of the user
+
+    res.json({ user, orders });
+  } catch (error) {
+    console.error('Error fetching profile:', error);
+    res.status(500).json({ message: 'Failed to fetch user profile' });
   }
 });
 

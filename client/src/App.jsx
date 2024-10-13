@@ -8,6 +8,9 @@ import AdminDashboard from './components/Admin/Dashboard';
 import AddFoodForm from './components/Admin/AddFoodForm'; // Import AddFoodForm
 import AdminOrders from './components/Admin/AdminOrders';
 import AdminFoodList from './components/Admin/AdminFoodList'; // Import AdminFoodList
+import UserProfile from './components/UserProfile';
+import Chatbot from './components/Chatbot';
+
 
 function App() {
   return (
@@ -22,6 +25,8 @@ function App() {
           <Route path="/admin/add-food" element={<AddFoodForm />} /> {/* New Route for AddFoodForm */}
           <Route path="/admin/orders" element={<AdminOrders />} />
           <Route path="/admin/food" element={<AdminFoodList />} /> {/* New Route for AdminFoodList */}
+          <Route path="/profile" element={<UserProfile />} />
+          <Route path="/chat" element={<Chatbot />} />
         </Routes>
       </BrowserRouter>
     </>
